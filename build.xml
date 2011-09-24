@@ -42,8 +42,8 @@
         <antcall target="ci.jslint"/>
     </target>
     <target name="ci.jslint">
-        <jsl:jslint haltOnFailure="false">
-            <formatter type="xml" destfile="${basedir}/build/checkstyle.xml"/>
+        <jsl:jslint haltOnFailure="false" options="node,es5,indent=2">
+            <formatter type="checkstyle" destfile="${basedir}/build/checkstyle.xml"/>
             <fileset dir="${basedir}/lib" includes="**/*.js" />
         </jsl:jslint>
     </target>
