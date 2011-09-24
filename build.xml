@@ -36,9 +36,9 @@
     <target name="ci" depends="ci.instrument">
         <exec executable="sh" dir="${basedir}" output="${basedir}/build/xunit.xml">
             <arg value="-c"/>
-            <arg value="vows ${basedir}/tests/* --cover-json --xunit"/>
+            <arg value="vows ${basedir}/tests/* --cover-html --xunit"/>
         </exec>
-        <move file="${basedir}/coverage.json" todir="${basedir}/build"/>
+        <move file="${basedir}/coverage.html" todir="${basedir}/build"/>
     </target>
 </project>
 
