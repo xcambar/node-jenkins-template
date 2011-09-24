@@ -12,5 +12,11 @@ vows.describe('Lib Test').addBatch({
         'returns true ': function (topic) {
             assert.equal (topic, true);
         }
+    },
+    'new Test': {
+        topic: false,
+        'isFalse': function(topic) {
+            assert.equal(topic, false);
+        }
     }
 }).export(module);
