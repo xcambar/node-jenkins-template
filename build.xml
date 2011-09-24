@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="test-CI" basedir=".">
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+        <classpath>
+            <pathelement location="/usr/share/java/ant-contrib-1.0b3.jar"/>
+        </classpath>
+    </taskdef>
     <property file="build.properties"/>
     <target name="clean">
-        <delete>
+        <delete includeEmptyDirs="true">
             <fileset dir="${basedir}/log" includes="**/*"/>
-            <fileset dir="${basedir}/build" includes="**/*"/>
             <fileset dir="${basedir}/tmp" includes="**/*"/>
         </delete>
+        <antcall target="clean.build"/>
     </target>
-    <target name="dependencies">
-        <for list="${dependencies.modules}" param="moduleName">
-            <sequential>
-            <echo message="${moduleName}" />
-            </sequential>
-        </for>
+    <target name="clean.build">
+        <if >
+            <available file="${basedir}/build" type="dir"/>
+            <then>
+                <delete includeEmptyDirs="true">
+                    <fileset dir="${basedir}/build"/>
+               </delete>
+           </then>
+       </if>
+    </target>
+    <target name="ci.init">
+        <antcall target="clean.build"/>
+        <mkdir dir="${basedir}/build"/>
+    </target>
+    <target name="ci.instrument" depends="ci.init">
+        <exec executable="jscoverage" failonerror="true">
+            <arg value="${basedir}/lib"/>
+            <arg value="${basedir}/build"/>
+        </exec>
+    </target>
+    <target name="ci" depends="ci.instrument">
+        <exec executable="sh" dir="${basedir}" output="${basedir}/build/xunit.xml">
+            <arg value="-c"/>
+            <arg value="vows ${basedir}/tests/* --cover-json --xunit"/>
+        </exec>
+        <move file="${basedir}/coverage.json" todir="${basedir}/build"/>
     </target>
 </project>
+
