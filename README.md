@@ -1,17 +1,23 @@
 ## Requirements
 
-node-jscoverage
-vows
+* Node.js modules
+** node-jscoverage
+** vows
+* Ant
+** ant-contrib
+** jslint4java
 
-## How To
+## Available tasks
 
-### Instrumentalize the js files for coverage report
+### clean
 
-jscoverage ./lib ./build
+* Removes the build folder
+* Empties log and tmp folders (except .gitignore files)
 
-### Run the tests
+### ci
 
-PATH=$PWD/node_modules/vows/bin/:$PATH vows test/* --cover-json --xunit
-
-Tip: in your test suites in Vows, require the _instrumentalized_ files instead of the regular ones.
-
+* Instruments the js files in the lib folder (for coverage reports)
+* Run Vows tests using the instrumented libs
+* Generates xunit report files for the tests
+* Generates html output for coverage report
+* Executes jslint and outputs a checkstyle report

@@ -8,8 +8,8 @@
     <property file="build.properties"/>
     <target name="clean">
         <delete includeEmptyDirs="true">
-            <fileset dir="${basedir}/log" includes="**/*"/>
-            <fileset dir="${basedir}/tmp" includes="**/*"/>
+            <fileset dir="${basedir}/log" includes="**/*" excludes=".gitignore"/>
+            <fileset dir="${basedir}/tmp" includes="**/*" excludes=".gitignore"/>
         </delete>
         <antcall target="clean.build"/>
     </target>
@@ -48,4 +48,3 @@
         </jsl:jslint>
     </target>
 </project>
-
