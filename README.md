@@ -22,9 +22,12 @@ This project provides you with
 You most probably don't want to clone this project to use it, but rather build your repo from its file structure.
 Here's how to init a project:
 
+
+```bash
 git init ./my_project
 cd ./my_project
 git archive --remote github.com/xcambar/jenkins-node-template HEAD | tar xvf -
+```
 
 ## Available Ant tasks
 
