@@ -6,8 +6,12 @@
 * Ant
 ** ant-contrib
 ** jslint4java
+* Jenkins
+** CheckStyle plugin
+** HTML Publisher plugin
 
-## Available tasks
+
+## Available Ant tasks
 
 ### clean
 
@@ -21,3 +25,4 @@
 * Generates xunit report files for the tests
 * Generates html output for coverage report
 * Executes jslint and outputs a checkstyle report
+

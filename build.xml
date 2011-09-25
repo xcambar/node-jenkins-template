@@ -41,7 +41,7 @@
         <move file="${basedir}/coverage.html" todir="${basedir}/build"/>
         <antcall target="ci.jslint"/>
     </target>
-    <target name="ci.jslint">
+    <target name="ci.jslint" depends="ci.init">
         <jsl:jslint haltOnFailure="false" options="node,es5,indent=2">
             <formatter type="checkstyle" destfile="${basedir}/build/checkstyle.xml"/>
             <fileset dir="${basedir}/lib" includes="**/*.js" />
